@@ -1,0 +1,39 @@
+syntax = "proto2";
+
+package lakeside;
+
+message Ping {
+  required int32 type = 1;
+}
+
+message BulbValues {
+  required int32 brightness = 1;
+  optional int32 temperature = 2;
+}
+
+message BulbState {
+  required int32 command = 1;
+  optional BulbValues values = 2;
+  optional int32 power = 3;
+  optional int32 unknown1 = 4;
+  optional BulbValues values2 = 5;
+  optional int32 unknown2 = 6;
+}
+
+message BulbPacket {
+  required int32 unknown1 = 1;
+  optional BulbState bulbstate = 2;
+  optional BulbState bulbset = 3;
+}
+
+message BulbInfo {
+  required int32 type = 1;
+  optional BulbPacket packet = 2;
+}
+
+message EufyPacket {
+  required int32 sequence = 1;
+  required string code = 2;
+  optional Ping ping = 3;
+  optional BulbInfo bulbinfo = 5;
+}
