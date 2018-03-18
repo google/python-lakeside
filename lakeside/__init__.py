@@ -18,7 +18,7 @@ from Crypto.Cipher import AES
 import random
 import requests
 import socket
-import lakeside_proto
+import lakeside.lakeside_proto
 import time
 import struct
 
@@ -28,19 +28,19 @@ iv = bytearray([0x77, 0x24, 0x56, 0xF2, 0xA7, 0x66, 0x4C, 0xF3, 0x39, 0x2C, 0x35
 def get_devices(username, password):
     devices = [];
 
-    client_id = "lakesidehome-app"
+    client_id = "eufyhome-app"
     client_secret = "GQCpr9dSp3uQpsOMgJ4xQ"
 
     payload = {'client_id':client_id, 'client_Secret':client_secret, 'email':username, 'password':password}
-    r = requests.post("https://home-api.lakesidelife.com/v1/user/email/login", json=payload)
+    r = requests.post("https://home-api.eufylife.com/v1/user/email/login", json=payload)
 
     token = r.json()['access_token']
     headers = {'token': token, 'category': 'Home'}
-    r = requests.get("https://home-api.lakesidelife.com/v1/device/list/devices-and-groups", headers=headers)
+    r = requests.get("https://home-api.eufylife.com/v1/device/list/devices-and-groups", headers=headers)
     info = r.json()
 
     for item in info['items']:
-        devices.append({'address': item['device']['wifi']['lan_ip_addr'], 'code': item['device']['local_code']})
+        devices.append({'address': item['device']['wifi']['lan_ip_addr'], 'code': item['device']['local_code'], 'type': item['device']['product']['product_code']})
 
     return devices
 

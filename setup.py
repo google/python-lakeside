@@ -42,8 +42,6 @@ setup(
         'Programming Language :: Python',
     ],
     install_requires=[
-        protobuf,
+        "protobuf",
     ]
-    include_package_data=True,
-    zip_safe=False,
 )
