@@ -51,7 +51,7 @@ class bulb:
 
     def connect(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.connect(("136.25.132.133", 55556))        
+        self.s.connect((self.address, 55556))
         self.update()
 
     def send_packet(self, packet, response):
@@ -59,7 +59,7 @@ class bulb:
         raw_packet = packet.SerializeToString()
 
         for i in range(16 - (len(raw_packet) % 16)):
-            raw_packet += chr(0x00)
+            raw_packet += b'\0'
 
         encrypted_packet = cipher.encrypt(raw_packet)
 
