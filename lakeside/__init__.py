@@ -44,8 +44,8 @@ def get_devices(username, password):
 
     return devices
 
-class bulb:
-    def __init__(self, address, code, kind):
+class device:
+    def __init__(self, address, code, kind=None):
         self.address = address
         self.code = code
         self.kind = kind
@@ -77,21 +77,43 @@ class bulb:
             elif self.kind == "T1013":
                 packet = lakeside_proto.T1013Packet()
                 packet.ParseFromString(decrypted_packet[2:length+2])
+            elif self.kind == "T1201" or self.kind == "T1202" or self.kind == "T1211":
+                packet = lakeside_proto.T1201Packet()
+                packet.ParseFromString(decrypted_packet[2:length+2])
             return packet
 
         return None
 
     def get_sequence(self):
-        if self.kind == "T1011" or self.kind == "T1012":
-            packet = lakeside_proto.T1012Packet()
-        else:
-            packet = lakeside_proto.T013Packet()
+        packet = lakeside_proto.T1012Packet()
         packet.sequence = random.randrange(3000000)
         packet.code = self.code
         packet.ping.type = 0        
         response = self.send_packet(packet, True)
         return response.sequence + 1
-    
+
+class bulb(device):
+    def __init__(self, address, code, kind):
+        return device.__init__(self, address, code, kind=kind)
+
+    def connect(self):
+        return device.connect(self)
+
+    def send_packet(self, packet, response):
+        return device.send_packet(self, packet, response)
+
+    def get_sequence(self):
+        return device.get_sequence(self)
+
+    def get_status(self):
+        packet = lakeside_proto.T1012Packet()
+        packet.sequence = self.get_sequence()
+        packet.code = self.code
+        packet.bulbinfo.type = 1
+        response = self.send_packet(packet, True)
+        return response
+
+
     def set_state(self, power=None, brightness=None, temperature=None):
         if self.kind == "T1011" or self.kind == "T1012":
             packet = lakeside_proto.T1012Packet()
@@ -136,14 +158,6 @@ class bulb:
         packet.code = self.code
         self.send_packet(packet, False)
 
-    def get_status(self):
-        packet = lakeside_proto.T1012Packet()
-        packet.sequence = self.get_sequence()
-        packet.code = self.code
-        packet.bulbinfo.type = 1
-        response = self.send_packet(packet, True)
-        return response
-
     def update(self):
         response = self.get_status()
         if self.kind == "T1011" or self.kind == "T1012":
@@ -175,3 +189,38 @@ class bulb:
 
     def set_colors(self, colors):
         self.set_state(brightness=self.brightness, colors=colors)
+
+class switch(device):
+    def __init__(self, address, code, kind):
+        return device.__init__(self, address, code, kind)
+
+    def connect(self):
+        return device.connect(self)
+
+    def send_packet(self, packet, response):
+        return device.send_packet(self, packet, response)
+
+    def get_sequence(self):
+        return device.get_sequence(self)
+
+    def get_status(self):
+        packet = lakeside_proto.T1201Packet()
+        packet.sequence = self.get_sequence()
+        packet.code = self.code
+        packet.switchinfo.type = 1
+        response = self.send_packet(packet, True)
+        return response
+
+    def update(self):
+        response = self.get_status()
+        self.power = response.switchinfo.packet.switchstatus.power
+
+    def set_state(self, power):
+        packet = lakeside_proto.T1201Packet()
+        packet.switchinfo.type = 0
+        packet.switchinfo.packet.unknown1 = 100
+        packet.switchinfo.packet.switchset.command = 7
+        packet.switchinfo.packet.switchset.state = power
+        packet.sequence = self.get_sequence()
+        packet.code = self.code
+        self.send_packet(packet, False)

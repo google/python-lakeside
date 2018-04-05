@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='lakeside.proto',
   package='lakeside',
   syntax='proto2',
-  serialized_pb=_b('\n\x0elakeside.proto\x12\x08lakeside\"\x14\n\x04Ping\x12\x0c\n\x04type\x18\x01 \x02(\x05\"5\n\nBulbValues\x12\x12\n\nbrightness\x18\x01 \x02(\x05\x12\x13\n\x0btemperature\x18\x02 \x01(\x05\"\x9c\x01\n\tBulbState\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12$\n\x06values\x18\x02 \x01(\x0b\x32\x14.lakeside.BulbValues\x12\r\n\x05power\x18\x03 \x01(\x05\x12\x10\n\x08unknown1\x18\x04 \x01(\x05\x12%\n\x07values2\x18\x05 \x01(\x0b\x32\x14.lakeside.BulbValues\x12\x10\n\x08unknown2\x18\x06 \x01(\x05\"l\n\nBulbPacket\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12&\n\tbulbstate\x18\x02 \x01(\x0b\x32\x13.lakeside.BulbState\x12$\n\x07\x62ulbset\x18\x03 \x01(\x0b\x32\x13.lakeside.BulbState\">\n\x08\x42ulbInfo\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12$\n\x06packet\x18\x02 \x01(\x0b\x32\x14.lakeside.BulbPacket\"q\n\x0bT1012Packet\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x1c\n\x04ping\x18\x03 \x01(\x0b\x32\x0e.lakeside.Ping\x12$\n\x08\x62ulbinfo\x18\x05 \x01(\x0b\x32\x12.lakeside.BulbInfo\"\xa6\x01\n\tT1013Info\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12\r\n\x05\x63olor\x18\x02 \x01(\x05\x12\r\n\x05power\x18\x03 \x01(\x05\x12$\n\x06values\x18\x04 \x01(\x0b\x32\x14.lakeside.BulbValues\x12$\n\x06\x63olors\x18\x05 \x01(\x0b\x32\x14.lakeside.T1013Color\x12\x10\n\x08unknown7\x18\x07 \x01(\x05\x12\x0c\n\x04rssi\x18\x08 \x01(\x05\"\x89\x01\n\x0cT1013Control\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12\r\n\x05\x63olor\x18\x02 \x01(\x05\x12$\n\x06values\x18\x03 \x01(\x0b\x32\x14.lakeside.BulbValues\x12$\n\x06\x63olors\x18\x04 \x01(\x0b\x32\x14.lakeside.T1013Color\x12\r\n\x05power\x18\x05 \x01(\x05\"J\n\nT1013Color\x12\x0b\n\x03red\x18\x01 \x02(\x05\x12\r\n\x05green\x18\x02 \x02(\x05\x12\x0c\n\x04\x62lue\x18\x03 \x02(\x05\x12\x12\n\nbrightness\x18\x04 \x02(\x05\"|\n\nT1013State\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12!\n\x04info\x18\x02 \x01(\x0b\x32\x13.lakeside.T1013Info\x12\'\n\x07\x63ontrol\x18\x03 \x01(\x0b\x32\x16.lakeside.T1013Control\x12\x10\n\x08unknown5\x18\x05 \x01(\x05\"C\n\rT1013BulbInfo\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12$\n\x06packet\x18\x02 \x01(\x0b\x32\x14.lakeside.T1013State\"v\n\x0bT1013Packet\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x1c\n\x04ping\x18\x03 \x01(\x0b\x32\x0e.lakeside.Ping\x12)\n\x08\x62ulbinfo\x18\x05 \x01(\x0b\x32\x17.lakeside.T1013BulbInfo')
+  serialized_pb=_b('\n\x0elakeside.proto\x12\x08lakeside\"\x14\n\x04Ping\x12\x0c\n\x04type\x18\x01 \x02(\x05\"5\n\nBulbValues\x12\x12\n\nbrightness\x18\x01 \x02(\x05\x12\x13\n\x0btemperature\x18\x02 \x01(\x05\"\x9c\x01\n\tBulbState\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12$\n\x06values\x18\x02 \x01(\x0b\x32\x14.lakeside.BulbValues\x12\r\n\x05power\x18\x03 \x01(\x05\x12\x10\n\x08unknown1\x18\x04 \x01(\x05\x12%\n\x07values2\x18\x05 \x01(\x0b\x32\x14.lakeside.BulbValues\x12\x10\n\x08unknown2\x18\x06 \x01(\x05\"l\n\nBulbPacket\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12&\n\tbulbstate\x18\x02 \x01(\x0b\x32\x13.lakeside.BulbState\x12$\n\x07\x62ulbset\x18\x03 \x01(\x0b\x32\x13.lakeside.BulbState\">\n\x08\x42ulbInfo\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12$\n\x06packet\x18\x02 \x01(\x0b\x32\x14.lakeside.BulbPacket\"q\n\x0bT1012Packet\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x1c\n\x04ping\x18\x03 \x01(\x0b\x32\x0e.lakeside.Ping\x12$\n\x08\x62ulbinfo\x18\x05 \x01(\x0b\x32\x12.lakeside.BulbInfo\"\xa6\x01\n\tT1013Info\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12\r\n\x05\x63olor\x18\x02 \x01(\x05\x12\r\n\x05power\x18\x03 \x01(\x05\x12$\n\x06values\x18\x04 \x01(\x0b\x32\x14.lakeside.BulbValues\x12$\n\x06\x63olors\x18\x05 \x01(\x0b\x32\x14.lakeside.T1013Color\x12\x10\n\x08unknown7\x18\x07 \x01(\x05\x12\x0c\n\x04rssi\x18\x08 \x01(\x05\"\x89\x01\n\x0cT1013Control\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12\r\n\x05\x63olor\x18\x02 \x01(\x05\x12$\n\x06values\x18\x03 \x01(\x0b\x32\x14.lakeside.BulbValues\x12$\n\x06\x63olors\x18\x04 \x01(\x0b\x32\x14.lakeside.T1013Color\x12\r\n\x05power\x18\x05 \x01(\x05\"J\n\nT1013Color\x12\x0b\n\x03red\x18\x01 \x02(\x05\x12\r\n\x05green\x18\x02 \x02(\x05\x12\x0c\n\x04\x62lue\x18\x03 \x02(\x05\x12\x12\n\nbrightness\x18\x04 \x02(\x05\"|\n\nT1013State\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12!\n\x04info\x18\x02 \x01(\x0b\x32\x13.lakeside.T1013Info\x12\'\n\x07\x63ontrol\x18\x03 \x01(\x0b\x32\x16.lakeside.T1013Control\x12\x10\n\x08unknown5\x18\x05 \x01(\x05\"C\n\rT1013BulbInfo\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12$\n\x06packet\x18\x02 \x01(\x0b\x32\x14.lakeside.T1013State\"v\n\x0bT1013Packet\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x1c\n\x04ping\x18\x03 \x01(\x0b\x32\x0e.lakeside.Ping\x12)\n\x08\x62ulbinfo\x18\x05 \x01(\x0b\x32\x17.lakeside.T1013BulbInfo\"-\n\x0bSwitchState\x12\x0f\n\x07\x63ommand\x18\x01 \x01(\x05\x12\r\n\x05state\x18\x02 \x01(\x05\"e\n\x0cSwitchStatus\x12\x10\n\x08unknown1\x18\x01 \x01(\x05\x12\r\n\x05power\x18\x02 \x01(\x05\x12\x10\n\x08unknown3\x18\x03 \x01(\x05\x12\x10\n\x08unknown4\x18\x04 \x01(\x05\x12\x10\n\x08unknown5\x18\x05 \x01(\x05\"x\n\x0cSwitchPacket\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12(\n\tswitchset\x18\x03 \x01(\x0b\x32\x15.lakeside.SwitchState\x12,\n\x0cswitchstatus\x18\x05 \x01(\x0b\x32\x16.lakeside.SwitchStatus\"B\n\nSwitchInfo\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12&\n\x06packet\x18\x02 \x01(\x0b\x32\x16.lakeside.SwitchPacket\"u\n\x0bT1201Packet\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x1c\n\x04ping\x18\x03 \x01(\x0b\x32\x0e.lakeside.Ping\x12(\n\nswitchinfo\x18\x05 \x01(\x0b\x32\x14.lakeside.SwitchInfo')
 )
 
 
@@ -620,6 +620,238 @@ _T1013PACKET = _descriptor.Descriptor(
   serialized_end=1251,
 )
 
+
+_SWITCHSTATE = _descriptor.Descriptor(
+  name='SwitchState',
+  full_name='lakeside.SwitchState',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='command', full_name='lakeside.SwitchState.command', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='state', full_name='lakeside.SwitchState.state', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1253,
+  serialized_end=1298,
+)
+
+
+_SWITCHSTATUS = _descriptor.Descriptor(
+  name='SwitchStatus',
+  full_name='lakeside.SwitchStatus',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='unknown1', full_name='lakeside.SwitchStatus.unknown1', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='power', full_name='lakeside.SwitchStatus.power', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='unknown3', full_name='lakeside.SwitchStatus.unknown3', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='unknown4', full_name='lakeside.SwitchStatus.unknown4', index=3,
+      number=4, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='unknown5', full_name='lakeside.SwitchStatus.unknown5', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1300,
+  serialized_end=1401,
+)
+
+
+_SWITCHPACKET = _descriptor.Descriptor(
+  name='SwitchPacket',
+  full_name='lakeside.SwitchPacket',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='unknown1', full_name='lakeside.SwitchPacket.unknown1', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='switchset', full_name='lakeside.SwitchPacket.switchset', index=1,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='switchstatus', full_name='lakeside.SwitchPacket.switchstatus', index=2,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1403,
+  serialized_end=1523,
+)
+
+
+_SWITCHINFO = _descriptor.Descriptor(
+  name='SwitchInfo',
+  full_name='lakeside.SwitchInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='lakeside.SwitchInfo.type', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='packet', full_name='lakeside.SwitchInfo.packet', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1525,
+  serialized_end=1591,
+)
+
+
+_T1201PACKET = _descriptor.Descriptor(
+  name='T1201Packet',
+  full_name='lakeside.T1201Packet',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='sequence', full_name='lakeside.T1201Packet.sequence', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='code', full_name='lakeside.T1201Packet.code', index=1,
+      number=2, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='ping', full_name='lakeside.T1201Packet.ping', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='switchinfo', full_name='lakeside.T1201Packet.switchinfo', index=3,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1593,
+  serialized_end=1710,
+)
+
 _BULBSTATE.fields_by_name['values'].message_type = _BULBVALUES
 _BULBSTATE.fields_by_name['values2'].message_type = _BULBVALUES
 _BULBPACKET.fields_by_name['bulbstate'].message_type = _BULBSTATE
@@ -636,6 +868,11 @@ _T1013STATE.fields_by_name['control'].message_type = _T1013CONTROL
 _T1013BULBINFO.fields_by_name['packet'].message_type = _T1013STATE
 _T1013PACKET.fields_by_name['ping'].message_type = _PING
 _T1013PACKET.fields_by_name['bulbinfo'].message_type = _T1013BULBINFO
+_SWITCHPACKET.fields_by_name['switchset'].message_type = _SWITCHSTATE
+_SWITCHPACKET.fields_by_name['switchstatus'].message_type = _SWITCHSTATUS
+_SWITCHINFO.fields_by_name['packet'].message_type = _SWITCHPACKET
+_T1201PACKET.fields_by_name['ping'].message_type = _PING
+_T1201PACKET.fields_by_name['switchinfo'].message_type = _SWITCHINFO
 DESCRIPTOR.message_types_by_name['Ping'] = _PING
 DESCRIPTOR.message_types_by_name['BulbValues'] = _BULBVALUES
 DESCRIPTOR.message_types_by_name['BulbState'] = _BULBSTATE
@@ -648,6 +885,11 @@ DESCRIPTOR.message_types_by_name['T1013Color'] = _T1013COLOR
 DESCRIPTOR.message_types_by_name['T1013State'] = _T1013STATE
 DESCRIPTOR.message_types_by_name['T1013BulbInfo'] = _T1013BULBINFO
 DESCRIPTOR.message_types_by_name['T1013Packet'] = _T1013PACKET
+DESCRIPTOR.message_types_by_name['SwitchState'] = _SWITCHSTATE
+DESCRIPTOR.message_types_by_name['SwitchStatus'] = _SWITCHSTATUS
+DESCRIPTOR.message_types_by_name['SwitchPacket'] = _SWITCHPACKET
+DESCRIPTOR.message_types_by_name['SwitchInfo'] = _SWITCHINFO
+DESCRIPTOR.message_types_by_name['T1201Packet'] = _T1201PACKET
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Ping = _reflection.GeneratedProtocolMessageType('Ping', (_message.Message,), dict(
@@ -733,6 +975,41 @@ T1013Packet = _reflection.GeneratedProtocolMessageType('T1013Packet', (_message.
   # @@protoc_insertion_point(class_scope:lakeside.T1013Packet)
   ))
 _sym_db.RegisterMessage(T1013Packet)
+
+SwitchState = _reflection.GeneratedProtocolMessageType('SwitchState', (_message.Message,), dict(
+  DESCRIPTOR = _SWITCHSTATE,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.SwitchState)
+  ))
+_sym_db.RegisterMessage(SwitchState)
+
+SwitchStatus = _reflection.GeneratedProtocolMessageType('SwitchStatus', (_message.Message,), dict(
+  DESCRIPTOR = _SWITCHSTATUS,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.SwitchStatus)
+  ))
+_sym_db.RegisterMessage(SwitchStatus)
+
+SwitchPacket = _reflection.GeneratedProtocolMessageType('SwitchPacket', (_message.Message,), dict(
+  DESCRIPTOR = _SWITCHPACKET,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.SwitchPacket)
+  ))
+_sym_db.RegisterMessage(SwitchPacket)
+
+SwitchInfo = _reflection.GeneratedProtocolMessageType('SwitchInfo', (_message.Message,), dict(
+  DESCRIPTOR = _SWITCHINFO,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.SwitchInfo)
+  ))
+_sym_db.RegisterMessage(SwitchInfo)
+
+T1201Packet = _reflection.GeneratedProtocolMessageType('T1201Packet', (_message.Message,), dict(
+  DESCRIPTOR = _T1201PACKET,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.T1201Packet)
+  ))
+_sym_db.RegisterMessage(T1201Packet)
 
 
 # @@protoc_insertion_point(module_scope)

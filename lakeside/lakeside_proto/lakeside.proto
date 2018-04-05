@@ -81,3 +81,34 @@ message T1013Packet {
   optional Ping ping = 3;
   optional T1013BulbInfo bulbinfo = 5;
 }
+
+message SwitchState {
+  optional int32 command = 1;
+  optional int32 state = 2;
+}
+
+message SwitchStatus {
+  optional int32 unknown1 = 1;
+  optional int32 power = 2;
+  optional int32 unknown3 = 3;
+  optional int32 unknown4 = 4;
+  optional int32 unknown5 = 5;
+  }
+
+message SwitchPacket {
+  required int32 unknown1 = 1;
+  optional SwitchState switchset = 3;
+  optional SwitchStatus switchstatus = 5;
+}
+
+message SwitchInfo {
+  required int32 type = 1;
+  optional SwitchPacket packet = 2;
+}
+
+message T1201Packet {
+  required int32 sequence = 1;
+  required string code = 2;
+  optional Ping ping = 3;
+  optional SwitchInfo switchinfo = 5;
+}
