@@ -19,9 +19,8 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='lakeside.proto',
   package='lakeside',
   syntax='proto2',
-  serialized_pb=_b('\n\x0elakeside.proto\x12\x08lakeside\"\x14\n\x04Ping\x12\x0c\n\x04type\x18\x01 \x02(\x05\"5\n\nBulbValues\x12\x12\n\nbrightness\x18\x01 \x02(\x05\x12\x13\n\x0btemperature\x18\x02 \x01(\x05\"\x9c\x01\n\tBulbState\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12$\n\x06values\x18\x02 \x01(\x0b\x32\x14.lakeside.BulbValues\x12\r\n\x05power\x18\x03 \x01(\x05\x12\x10\n\x08unknown1\x18\x04 \x01(\x05\x12%\n\x07values2\x18\x05 \x01(\x0b\x32\x14.lakeside.BulbValues\x12\x10\n\x08unknown2\x18\x06 \x01(\x05\"l\n\nBulbPacket\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12&\n\tbulbstate\x18\x02 \x01(\x0b\x32\x13.lakeside.BulbState\x12$\n\x07\x62ulbset\x18\x03 \x01(\x0b\x32\x13.lakeside.BulbState\">\n\x08\x42ulbInfo\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12$\n\x06packet\x18\x02 \x01(\x0b\x32\x14.lakeside.BulbPacket\"p\n\nEufyPacket\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x1c\n\x04ping\x18\x03 \x01(\x0b\x32\x0e.lakeside.Ping\x12$\n\x08\x62ulbinfo\x18\x05 \x01(\x0b\x32\x12.lakeside.BulbInfo')
+  serialized_pb=_b('\n\x0elakeside.proto\x12\x08lakeside\"\x14\n\x04Ping\x12\x0c\n\x04type\x18\x01 \x02(\x05\"5\n\nBulbValues\x12\x12\n\nbrightness\x18\x01 \x02(\x05\x12\x13\n\x0btemperature\x18\x02 \x01(\x05\"\x9c\x01\n\tBulbState\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12$\n\x06values\x18\x02 \x01(\x0b\x32\x14.lakeside.BulbValues\x12\r\n\x05power\x18\x03 \x01(\x05\x12\x10\n\x08unknown1\x18\x04 \x01(\x05\x12%\n\x07values2\x18\x05 \x01(\x0b\x32\x14.lakeside.BulbValues\x12\x10\n\x08unknown2\x18\x06 \x01(\x05\"l\n\nBulbPacket\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12&\n\tbulbstate\x18\x02 \x01(\x0b\x32\x13.lakeside.BulbState\x12$\n\x07\x62ulbset\x18\x03 \x01(\x0b\x32\x13.lakeside.BulbState\">\n\x08\x42ulbInfo\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12$\n\x06packet\x18\x02 \x01(\x0b\x32\x14.lakeside.BulbPacket\"q\n\x0bT1012Packet\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x1c\n\x04ping\x18\x03 \x01(\x0b\x32\x0e.lakeside.Ping\x12$\n\x08\x62ulbinfo\x18\x05 \x01(\x0b\x32\x12.lakeside.BulbInfo\"\xa6\x01\n\tT1013Info\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12\r\n\x05\x63olor\x18\x02 \x01(\x05\x12\r\n\x05power\x18\x03 \x01(\x05\x12$\n\x06values\x18\x04 \x01(\x0b\x32\x14.lakeside.BulbValues\x12$\n\x06\x63olors\x18\x05 \x01(\x0b\x32\x14.lakeside.T1013Color\x12\x10\n\x08unknown7\x18\x07 \x01(\x05\x12\x0c\n\x04rssi\x18\x08 \x01(\x05\"\x89\x01\n\x0cT1013Control\x12\x0f\n\x07\x63ommand\x18\x01 \x02(\x05\x12\r\n\x05\x63olor\x18\x02 \x01(\x05\x12$\n\x06values\x18\x03 \x01(\x0b\x32\x14.lakeside.BulbValues\x12$\n\x06\x63olors\x18\x04 \x01(\x0b\x32\x14.lakeside.T1013Color\x12\r\n\x05power\x18\x05 \x01(\x05\"J\n\nT1013Color\x12\x0b\n\x03red\x18\x01 \x02(\x05\x12\r\n\x05green\x18\x02 \x02(\x05\x12\x0c\n\x04\x62lue\x18\x03 \x02(\x05\x12\x12\n\nbrightness\x18\x04 \x02(\x05\"|\n\nT1013State\x12\x10\n\x08unknown1\x18\x01 \x02(\x05\x12!\n\x04info\x18\x02 \x01(\x0b\x32\x13.lakeside.T1013Info\x12\'\n\x07\x63ontrol\x18\x03 \x01(\x0b\x32\x16.lakeside.T1013Control\x12\x10\n\x08unknown5\x18\x05 \x01(\x05\"C\n\rT1013BulbInfo\x12\x0c\n\x04type\x18\x01 \x02(\x05\x12$\n\x06packet\x18\x02 \x01(\x0b\x32\x14.lakeside.T1013State\"v\n\x0bT1013Packet\x12\x10\n\x08sequence\x18\x01 \x02(\x05\x12\x0c\n\x04\x63ode\x18\x02 \x02(\t\x12\x1c\n\x04ping\x18\x03 \x01(\x0b\x32\x0e.lakeside.Ping\x12)\n\x08\x62ulbinfo\x18\x05 \x01(\x0b\x32\x17.lakeside.T1013BulbInfo')
 )
-_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 
 
@@ -244,36 +243,36 @@ _BULBINFO = _descriptor.Descriptor(
 )
 
 
-_EUFYPACKET = _descriptor.Descriptor(
-  name='EufyPacket',
-  full_name='lakeside.EufyPacket',
+_T1012PACKET = _descriptor.Descriptor(
+  name='T1012Packet',
+  full_name='lakeside.T1012Packet',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='sequence', full_name='lakeside.EufyPacket.sequence', index=0,
+      name='sequence', full_name='lakeside.T1012Packet.sequence', index=0,
       number=1, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='code', full_name='lakeside.EufyPacket.code', index=1,
+      name='code', full_name='lakeside.T1012Packet.code', index=1,
       number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='ping', full_name='lakeside.EufyPacket.ping', index=2,
+      name='ping', full_name='lakeside.T1012Packet.ping', index=2,
       number=3, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='bulbinfo', full_name='lakeside.EufyPacket.bulbinfo', index=3,
+      name='bulbinfo', full_name='lakeside.T1012Packet.bulbinfo', index=3,
       number=5, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
@@ -292,7 +291,333 @@ _EUFYPACKET = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=438,
-  serialized_end=550,
+  serialized_end=551,
+)
+
+
+_T1013INFO = _descriptor.Descriptor(
+  name='T1013Info',
+  full_name='lakeside.T1013Info',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='command', full_name='lakeside.T1013Info.command', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='color', full_name='lakeside.T1013Info.color', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='power', full_name='lakeside.T1013Info.power', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='values', full_name='lakeside.T1013Info.values', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='colors', full_name='lakeside.T1013Info.colors', index=4,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='unknown7', full_name='lakeside.T1013Info.unknown7', index=5,
+      number=7, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='rssi', full_name='lakeside.T1013Info.rssi', index=6,
+      number=8, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=554,
+  serialized_end=720,
+)
+
+
+_T1013CONTROL = _descriptor.Descriptor(
+  name='T1013Control',
+  full_name='lakeside.T1013Control',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='command', full_name='lakeside.T1013Control.command', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='color', full_name='lakeside.T1013Control.color', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='values', full_name='lakeside.T1013Control.values', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='colors', full_name='lakeside.T1013Control.colors', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='power', full_name='lakeside.T1013Control.power', index=4,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=723,
+  serialized_end=860,
+)
+
+
+_T1013COLOR = _descriptor.Descriptor(
+  name='T1013Color',
+  full_name='lakeside.T1013Color',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='red', full_name='lakeside.T1013Color.red', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='green', full_name='lakeside.T1013Color.green', index=1,
+      number=2, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='blue', full_name='lakeside.T1013Color.blue', index=2,
+      number=3, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='brightness', full_name='lakeside.T1013Color.brightness', index=3,
+      number=4, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=862,
+  serialized_end=936,
+)
+
+
+_T1013STATE = _descriptor.Descriptor(
+  name='T1013State',
+  full_name='lakeside.T1013State',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='unknown1', full_name='lakeside.T1013State.unknown1', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='info', full_name='lakeside.T1013State.info', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='control', full_name='lakeside.T1013State.control', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='unknown5', full_name='lakeside.T1013State.unknown5', index=3,
+      number=5, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=938,
+  serialized_end=1062,
+)
+
+
+_T1013BULBINFO = _descriptor.Descriptor(
+  name='T1013BulbInfo',
+  full_name='lakeside.T1013BulbInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='type', full_name='lakeside.T1013BulbInfo.type', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='packet', full_name='lakeside.T1013BulbInfo.packet', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1064,
+  serialized_end=1131,
+)
+
+
+_T1013PACKET = _descriptor.Descriptor(
+  name='T1013Packet',
+  full_name='lakeside.T1013Packet',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='sequence', full_name='lakeside.T1013Packet.sequence', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='code', full_name='lakeside.T1013Packet.code', index=1,
+      number=2, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='ping', full_name='lakeside.T1013Packet.ping', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='bulbinfo', full_name='lakeside.T1013Packet.bulbinfo', index=3,
+      number=5, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1133,
+  serialized_end=1251,
 )
 
 _BULBSTATE.fields_by_name['values'].message_type = _BULBVALUES
@@ -300,14 +625,30 @@ _BULBSTATE.fields_by_name['values2'].message_type = _BULBVALUES
 _BULBPACKET.fields_by_name['bulbstate'].message_type = _BULBSTATE
 _BULBPACKET.fields_by_name['bulbset'].message_type = _BULBSTATE
 _BULBINFO.fields_by_name['packet'].message_type = _BULBPACKET
-_EUFYPACKET.fields_by_name['ping'].message_type = _PING
-_EUFYPACKET.fields_by_name['bulbinfo'].message_type = _BULBINFO
+_T1012PACKET.fields_by_name['ping'].message_type = _PING
+_T1012PACKET.fields_by_name['bulbinfo'].message_type = _BULBINFO
+_T1013INFO.fields_by_name['values'].message_type = _BULBVALUES
+_T1013INFO.fields_by_name['colors'].message_type = _T1013COLOR
+_T1013CONTROL.fields_by_name['values'].message_type = _BULBVALUES
+_T1013CONTROL.fields_by_name['colors'].message_type = _T1013COLOR
+_T1013STATE.fields_by_name['info'].message_type = _T1013INFO
+_T1013STATE.fields_by_name['control'].message_type = _T1013CONTROL
+_T1013BULBINFO.fields_by_name['packet'].message_type = _T1013STATE
+_T1013PACKET.fields_by_name['ping'].message_type = _PING
+_T1013PACKET.fields_by_name['bulbinfo'].message_type = _T1013BULBINFO
 DESCRIPTOR.message_types_by_name['Ping'] = _PING
 DESCRIPTOR.message_types_by_name['BulbValues'] = _BULBVALUES
 DESCRIPTOR.message_types_by_name['BulbState'] = _BULBSTATE
 DESCRIPTOR.message_types_by_name['BulbPacket'] = _BULBPACKET
 DESCRIPTOR.message_types_by_name['BulbInfo'] = _BULBINFO
-DESCRIPTOR.message_types_by_name['EufyPacket'] = _EUFYPACKET
+DESCRIPTOR.message_types_by_name['T1012Packet'] = _T1012PACKET
+DESCRIPTOR.message_types_by_name['T1013Info'] = _T1013INFO
+DESCRIPTOR.message_types_by_name['T1013Control'] = _T1013CONTROL
+DESCRIPTOR.message_types_by_name['T1013Color'] = _T1013COLOR
+DESCRIPTOR.message_types_by_name['T1013State'] = _T1013STATE
+DESCRIPTOR.message_types_by_name['T1013BulbInfo'] = _T1013BULBINFO
+DESCRIPTOR.message_types_by_name['T1013Packet'] = _T1013PACKET
+_sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Ping = _reflection.GeneratedProtocolMessageType('Ping', (_message.Message,), dict(
   DESCRIPTOR = _PING,
@@ -344,12 +685,54 @@ BulbInfo = _reflection.GeneratedProtocolMessageType('BulbInfo', (_message.Messag
   ))
 _sym_db.RegisterMessage(BulbInfo)
 
-EufyPacket = _reflection.GeneratedProtocolMessageType('EufyPacket', (_message.Message,), dict(
-  DESCRIPTOR = _EUFYPACKET,
+T1012Packet = _reflection.GeneratedProtocolMessageType('T1012Packet', (_message.Message,), dict(
+  DESCRIPTOR = _T1012PACKET,
   __module__ = 'lakeside_pb2'
-  # @@protoc_insertion_point(class_scope:lakeside.EufyPacket)
+  # @@protoc_insertion_point(class_scope:lakeside.T1012Packet)
   ))
-_sym_db.RegisterMessage(EufyPacket)
+_sym_db.RegisterMessage(T1012Packet)
+
+T1013Info = _reflection.GeneratedProtocolMessageType('T1013Info', (_message.Message,), dict(
+  DESCRIPTOR = _T1013INFO,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.T1013Info)
+  ))
+_sym_db.RegisterMessage(T1013Info)
+
+T1013Control = _reflection.GeneratedProtocolMessageType('T1013Control', (_message.Message,), dict(
+  DESCRIPTOR = _T1013CONTROL,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.T1013Control)
+  ))
+_sym_db.RegisterMessage(T1013Control)
+
+T1013Color = _reflection.GeneratedProtocolMessageType('T1013Color', (_message.Message,), dict(
+  DESCRIPTOR = _T1013COLOR,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.T1013Color)
+  ))
+_sym_db.RegisterMessage(T1013Color)
+
+T1013State = _reflection.GeneratedProtocolMessageType('T1013State', (_message.Message,), dict(
+  DESCRIPTOR = _T1013STATE,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.T1013State)
+  ))
+_sym_db.RegisterMessage(T1013State)
+
+T1013BulbInfo = _reflection.GeneratedProtocolMessageType('T1013BulbInfo', (_message.Message,), dict(
+  DESCRIPTOR = _T1013BULBINFO,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.T1013BulbInfo)
+  ))
+_sym_db.RegisterMessage(T1013BulbInfo)
+
+T1013Packet = _reflection.GeneratedProtocolMessageType('T1013Packet', (_message.Message,), dict(
+  DESCRIPTOR = _T1013PACKET,
+  __module__ = 'lakeside_pb2'
+  # @@protoc_insertion_point(class_scope:lakeside.T1013Packet)
+  ))
+_sym_db.RegisterMessage(T1013Packet)
 
 
 # @@protoc_insertion_point(module_scope)

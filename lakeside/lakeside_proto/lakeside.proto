@@ -31,9 +31,53 @@ message BulbInfo {
   optional BulbPacket packet = 2;
 }
 
-message EufyPacket {
+message T1012Packet {
   required int32 sequence = 1;
   required string code = 2;
   optional Ping ping = 3;
   optional BulbInfo bulbinfo = 5;
+}
+
+message T1013Info {
+  required int32 command = 1;
+  optional int32 color = 2;
+  optional int32 power = 3;
+  optional BulbValues values = 4;
+  optional T1013Color colors = 5;
+  optional int32 unknown7 = 7;
+  optional int32 rssi = 8;
+}
+
+message T1013Control {
+  required int32 command = 1;
+  optional int32 color = 2;
+  optional BulbValues values = 3;
+  optional T1013Color colors = 4;
+  optional int32 power = 5;
+}
+
+message T1013Color {
+  required int32 red = 1;
+  required int32 green = 2;
+  required int32 blue = 3;
+  required int32 brightness = 4;
+}
+
+message T1013State {
+  required int32 unknown1 = 1;
+  optional T1013Info info = 2;
+  optional T1013Control control = 3;
+  optional int32 unknown5 = 5;
+}
+
+message T1013BulbInfo {
+  required int32 type = 1;
+  optional T1013State packet = 2;
+}
+
+message T1013Packet {
+  required int32 sequence = 1;
+  required string code = 2;
+  optional Ping ping = 3;
+  optional T1013BulbInfo bulbinfo = 5;
 }
