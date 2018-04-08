@@ -113,8 +113,8 @@ class bulb(device):
         response = self.send_packet(packet, True)
         return response
 
-
-    def set_state(self, power=None, brightness=None, temperature=None):
+    def set_state(self, power=None, brightness=None, temperature=None,
+                  colors=None):
         if self.kind == "T1011" or self.kind == "T1012":
             packet = lakeside_proto.T1012Packet()
             packet.bulbinfo.type = 0
