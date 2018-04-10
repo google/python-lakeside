@@ -18,7 +18,7 @@ from Crypto.Cipher import AES
 import random
 import requests
 import socket
-import lakeside_proto
+import lakeside.lakeside_proto
 import time
 import struct
 
@@ -28,30 +28,31 @@ iv = bytearray([0x77, 0x24, 0x56, 0xF2, 0xA7, 0x66, 0x4C, 0xF3, 0x39, 0x2C, 0x35
 def get_devices(username, password):
     devices = [];
 
-    client_id = "lakesidehome-app"
+    client_id = "eufyhome-app"
     client_secret = "GQCpr9dSp3uQpsOMgJ4xQ"
 
     payload = {'client_id':client_id, 'client_Secret':client_secret, 'email':username, 'password':password}
-    r = requests.post("https://home-api.lakesidelife.com/v1/user/email/login", json=payload)
+    r = requests.post("https://home-api.eufylife.com/v1/user/email/login", json=payload)
 
     token = r.json()['access_token']
     headers = {'token': token, 'category': 'Home'}
-    r = requests.get("https://home-api.lakesidelife.com/v1/device/list/devices-and-groups", headers=headers)
+    r = requests.get("https://home-api.eufylife.com/v1/device/list/devices-and-groups", headers=headers)
     info = r.json()
 
     for item in info['items']:
-        devices.append({'address': item['device']['wifi']['lan_ip_addr'], 'code': item['device']['local_code']})
+        devices.append({'address': item['device']['wifi']['lan_ip_addr'], 'code': item['device']['local_code'], 'type': item['device']['product']['product_code'], 'name': item['device']['alias_name']})
 
     return devices
 
-class bulb:
-    def __init__(self, address, code):
+class device:
+    def __init__(self, address, code, kind=None):
         self.address = address
         self.code = code
+        self.kind = kind
 
     def connect(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.connect(("136.25.132.133", 55556))        
+        self.s.connect((self.address, 55556))
         self.update()
 
     def send_packet(self, packet, response):
@@ -59,7 +60,7 @@ class bulb:
         raw_packet = packet.SerializeToString()
 
         for i in range(16 - (len(raw_packet) % 16)):
-            raw_packet += chr(0x00)
+            raw_packet += b'\0'
 
         encrypted_packet = cipher.encrypt(raw_packet)
 
@@ -71,50 +72,111 @@ class bulb:
             decrypted_packet = cipher.decrypt(data)
 
             length = struct.unpack("<H", decrypted_packet[0:2])[0]
-            packet.ParseFromString(decrypted_packet[2:length+2])
+            if self.kind == "T1011" or self.kind == "T1012":
+                packet.ParseFromString(decrypted_packet[2:length+2])
+            elif self.kind == "T1013":
+                packet = lakeside_proto.T1013Packet()
+                packet.ParseFromString(decrypted_packet[2:length+2])
+            elif self.kind == "T1201" or self.kind == "T1202" or self.kind == "T1211":
+                packet = lakeside_proto.T1201Packet()
+                packet.ParseFromString(decrypted_packet[2:length+2])
             return packet
 
         return None
 
     def get_sequence(self):
-        packet = lakeside_proto.EufyPacket()
+        packet = lakeside_proto.T1012Packet()
         packet.sequence = random.randrange(3000000)
         packet.code = self.code
         packet.ping.type = 0        
         response = self.send_packet(packet, True)
         return response.sequence + 1
-    
-    def set_state(self, power=None, brightness=None, temperature=None):
-        packet = lakeside_proto.EufyPacket()
-        packet.sequence = self.get_sequence()
-        packet.code = self.code
-        packet.bulbinfo.type = 0
-        packet.bulbinfo.packet.unknown1 = 100
-        packet.bulbinfo.packet.bulbset.command = 7
-        if power != None:
-            self.power = power
-            packet.bulbinfo.packet.bulbset.power = power
-        if brightness != None:
-            self.brightness = brightness
-            packet.bulbinfo.packet.bulbset.values.brightness=brightness
-        if temperature != None:
-            self.temperature = temperature
-            packet.bulbinfo.packet.bulbset.values.temperature=temperature
-        self.send_packet(packet, False)
+
+class bulb(device):
+    def __init__(self, address, code, kind):
+        return device.__init__(self, address, code, kind=kind)
+
+    def connect(self):
+        return device.connect(self)
+
+    def send_packet(self, packet, response):
+        return device.send_packet(self, packet, response)
+
+    def get_sequence(self):
+        return device.get_sequence(self)
 
     def get_status(self):
-        packet = lakeside_proto.EufyPacket()
+        packet = lakeside_proto.T1012Packet()
         packet.sequence = self.get_sequence()
         packet.code = self.code
         packet.bulbinfo.type = 1
         response = self.send_packet(packet, True)
         return response
 
+    def set_state(self, power=None, brightness=None, temperature=None,
+                  colors=None):
+        if self.kind == "T1011" or self.kind == "T1012":
+            packet = lakeside_proto.T1012Packet()
+            packet.bulbinfo.type = 0
+            packet.bulbinfo.packet.unknown1 = 100
+            packet.bulbinfo.packet.bulbset.command = 7
+            if power != None:
+                self.power = power
+                packet.bulbinfo.packet.bulbset.power = power
+            if brightness != None:
+                self.brightness = brightness
+                packet.bulbinfo.packet.bulbset.values.brightness=brightness
+            if temperature != None:
+                self.temperature = temperature
+                packet.bulbinfo.packet.bulbset.values.temperature=temperature
+        else:
+            self.colors = colors
+            packet = lakeside_proto.T013Packet()
+            packet.bulbinfo.type = 0
+            packet.bulbinfo.packet.unknown1 = 10
+            packet.bulbinfo.packet.control.command = 7
+            if power != None:
+                self.power = power
+                packet.bulbinfo.packet.control.power = power
+            if colors != None:
+                packet.bulbinfo.packet.control.color = 1
+                packet.bulbinfo.packet.control.colors.red = colors[0]
+                packet.bulbinfo.packet.control.colors.green = colors[1]
+                packet.bulbinfo.packet.control.colors.blue = colors[2]
+                if brightness != None:
+                    self.brightness = brightness
+                    packet.bulbinfo.control.colors.brightness = brightness
+            else:
+                packet.bulbinfo.packet.control.color = 0
+                if brightness != None:
+                    self.brightness = brightness
+                    packet.bulbinfo.packet.control.values.brightness = brightness
+                if temperature != None:
+                    self.temperature = temperature
+                    packet.bulbinfo.packet.control.values.temperatre = temperature
+        packet.sequence = self.get_sequence()
+        packet.code = self.code
+        self.send_packet(packet, False)
+
     def update(self):
         response = self.get_status()
-        self.brightness = response.bulbinfo.packet.bulbstate.values.brightness
-        self.temperature = response.bulbinfo.packet.bulbstate.values.temperature
-        self.power = response.bulbinfo.packet.bulbstate.power
+        if self.kind == "T1011" or self.kind == "T1012":
+            self.brightness = response.bulbinfo.packet.bulbstate.values.brightness
+            self.temperature = response.bulbinfo.packet.bulbstate.values.temperature
+            self.power = response.bulbinfo.packet.bulbstate.power
+            self.colors = None
+        elif self.kind == "T1013":
+            self.power = response.power
+            if response.color == 1:
+                self.brightness = response.colors.brightness
+                self.colors[0] = response.colors.red
+                self.colors[1] = response.colors.blue
+                self.colors[2] = response.colors.green
+                self.temperature = None
+            else:
+                self.brightness = response.values.power
+                self.temperature = response.values.temperature
+                self.colors = None
 
     def set_power(self, power):
         self.set_state(power=power)
@@ -124,3 +186,41 @@ class bulb:
 
     def set_temperature(self, temperature):
         self.set_state(brightness=self.brightness, temperature=temperature)
+
+    def set_colors(self, colors):
+        self.set_state(brightness=self.brightness, colors=colors)
+
+class switch(device):
+    def __init__(self, address, code, kind):
+        return device.__init__(self, address, code, kind)
+
+    def connect(self):
+        return device.connect(self)
+
+    def send_packet(self, packet, response):
+        return device.send_packet(self, packet, response)
+
+    def get_sequence(self):
+        return device.get_sequence(self)
+
+    def get_status(self):
+        packet = lakeside_proto.T1201Packet()
+        packet.sequence = self.get_sequence()
+        packet.code = self.code
+        packet.switchinfo.type = 1
+        response = self.send_packet(packet, True)
+        return response
+
+    def update(self):
+        response = self.get_status()
+        self.power = response.switchinfo.packet.switchstatus.power
+
+    def set_state(self, power):
+        packet = lakeside_proto.T1201Packet()
+        packet.switchinfo.type = 0
+        packet.switchinfo.packet.unknown1 = 100
+        packet.switchinfo.packet.switchset.command = 7
+        packet.switchinfo.packet.switchset.state = power
+        packet.sequence = self.get_sequence()
+        packet.code = self.code
+        self.send_packet(packet, False)

@@ -23,11 +23,11 @@ import warnings
 
 dynamic_requires = []
 
-version = 0.1
+version = 0.4
 
 setup(
     name='lakeside',
-    version=0.1,
+    version=0.4,
     author='Matthew Garrett',
     author_email='mjg59@google.com',
     url='http://github.com/google/python-lakeside',
@@ -37,13 +37,18 @@ setup(
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: Apache License 2.0',
+        'License :: OSI Approved :: Apache Software License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
     ],
     install_requires=[
+<<<<<<< HEAD
         'protobuf',
     ],
     include_package_data=True,
     zip_safe=False,
+=======
+        "protobuf",
+    ]
+>>>>>>> upstream/master
 )
