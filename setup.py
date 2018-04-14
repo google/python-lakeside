@@ -42,13 +42,6 @@ setup(
         'Programming Language :: Python',
     ],
     install_requires=[
-<<<<<<< HEAD
-        'protobuf',
-    ],
-    include_package_data=True,
-    zip_safe=False,
-=======
         "protobuf",
     ]
->>>>>>> upstream/master
 )
