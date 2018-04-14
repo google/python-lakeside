@@ -131,7 +131,7 @@ class bulb(device):
                 packet.bulbinfo.packet.bulbset.values.temperature=temperature
         else:
             self.colors = colors
-            packet = lakeside_proto.T013Packet()
+            packet = lakeside_proto.T1013Packet()
             packet.bulbinfo.type = 0
             packet.bulbinfo.packet.unknown1 = 10
             packet.bulbinfo.packet.control.command = 7
@@ -145,7 +145,7 @@ class bulb(device):
                 packet.bulbinfo.packet.control.colors.blue = colors[2]
                 if brightness != None:
                     self.brightness = brightness
-                    packet.bulbinfo.control.colors.brightness = brightness
+                    packet.bulbinfo.packet.control.colors.brightness = brightness
             else:
                 packet.bulbinfo.packet.control.color = 0
                 if brightness != None:
@@ -166,16 +166,18 @@ class bulb(device):
             self.power = response.bulbinfo.packet.bulbstate.power
             self.colors = None
         elif self.kind == "T1013":
-            self.power = response.power
-            if response.color == 1:
-                self.brightness = response.colors.brightness
-                self.colors[0] = response.colors.red
-                self.colors[1] = response.colors.blue
-                self.colors[2] = response.colors.green
+            info=response.bulbinfo.packet.info
+            self.power = info.power
+            if info.color == 1:
+                self.colors=[0]*3
+                self.brightness = info.colors.brightness
+                self.colors[0] = info.colors.red
+                self.colors[1] = info.colors.blue
+                self.colors[2] = info.colors.green
                 self.temperature = None
             else:
-                self.brightness = response.values.power
-                self.temperature = response.values.temperature
+                self.brightness = info.power
+                self.temperature = info.values.temperature
                 self.colors = None
 
     def set_power(self, power):
