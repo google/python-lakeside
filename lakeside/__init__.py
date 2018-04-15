@@ -173,8 +173,8 @@ class bulb(device):
                 self.brightness = response.bulbinfo.packet.info.colors.brightness
                 self.colors = []
                 self.colors.append(response.bulbinfo.packet.info.colors.red)
-                self.colors.append(response.bulbinfo.packet.info.colors.blue)
                 self.colors.append(response.bulbinfo.packet.info.colors.green)
+                self.colors.append(response.bulbinfo.packet.info.colors.blue)
                 self.temperature = 50
             else:
                 self.brightness = response.bulbinfo.packet.info.values.brightness
