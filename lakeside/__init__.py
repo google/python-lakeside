@@ -168,7 +168,7 @@ class bulb(device):
             self.power = response.bulbinfo.packet.bulbstate.power
             self.colors = None
         elif self.kind == "T1013":
-            self.power = response.bulbinfo.packet.control.power
+            self.power = response.bulbinfo.packet.info.power
             if response.bulbinfo.packet.info.color == 1:
                 self.brightness = response.bulbinfo.packet.info.colors.brightness
                 self.colors = []
