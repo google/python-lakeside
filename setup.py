@@ -23,11 +23,11 @@ import warnings
 
 dynamic_requires = []
 
-version = 0.4
+version = 0.5
 
 setup(
     name='lakeside',
-    version=0.4,
+    version=0.5,
     author='Matthew Garrett',
     author_email='mjg59@google.com',
     url='http://github.com/google/python-lakeside',
