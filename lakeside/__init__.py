@@ -131,7 +131,7 @@ class bulb(device):
                 packet.bulbinfo.packet.bulbset.values.temperature=temperature
         else:
             self.colors = colors
-            packet = lakeside_proto.T013Packet()
+            packet = lakeside_proto.T1013Packet()
             packet.bulbinfo.type = 0
             packet.bulbinfo.packet.unknown1 = 10
             packet.bulbinfo.packet.control.command = 7
@@ -145,15 +145,17 @@ class bulb(device):
                 packet.bulbinfo.packet.control.colors.blue = colors[2]
                 if brightness != None:
                     self.brightness = brightness
-                    packet.bulbinfo.control.colors.brightness = brightness
+                packet.bulbinfo.packet.control.colors.brightness = self.brightness
             else:
                 packet.bulbinfo.packet.control.color = 0
                 if brightness != None:
                     self.brightness = brightness
-                    packet.bulbinfo.packet.control.values.brightness = brightness
                 if temperature != None:
                     self.temperature = temperature
-                    packet.bulbinfo.packet.control.values.temperatre = temperature
+
+                packet.bulbinfo.packet.control.values.brightness = self.brightness
+                packet.bulbinfo.packet.control.values.temperature = self.temperature
+                packet.bulbinfo.packet.control.power = self.power
         packet.sequence = self.get_sequence()
         packet.code = self.code
         self.send_packet(packet, False)
@@ -166,16 +168,17 @@ class bulb(device):
             self.power = response.bulbinfo.packet.bulbstate.power
             self.colors = None
         elif self.kind == "T1013":
-            self.power = response.power
-            if response.color == 1:
-                self.brightness = response.colors.brightness
-                self.colors[0] = response.colors.red
-                self.colors[1] = response.colors.blue
-                self.colors[2] = response.colors.green
-                self.temperature = None
+            self.power = response.bulbinfo.packet.control.power
+            if response.bulbinfo.packet.info.color == 1:
+                self.brightness = response.bulbinfo.packet.info.colors.brightness
+                self.colors = []
+                self.colors.append(response.bulbinfo.packet.info.colors.red)
+                self.colors.append(response.bulbinfo.packet.info.colors.blue)
+                self.colors.append(response.bulbinfo.packet.info.colors.green)
+                self.temperature = 50
             else:
-                self.brightness = response.values.power
-                self.temperature = response.values.temperature
+                self.brightness = response.bulbinfo.packet.info.values.brightness
+                self.temperature = response.bulbinfo.packet.info.values.temperature
                 self.colors = None
 
     def set_power(self, power):
