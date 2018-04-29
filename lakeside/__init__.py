@@ -40,7 +40,8 @@ def get_devices(username, password):
     info = r.json()
 
     for item in info['items']:
-        devices.append({'address': item['device']['wifi']['lan_ip_addr'], 'code': item['device']['local_code'], 'type': item['device']['product']['product_code'], 'name': item['device']['alias_name']})
+        if item['device'] is not None:
+            devices.append({'address': item['device']['wifi']['lan_ip_addr'], 'code': item['device']['local_code'], 'type': item['device']['product']['product_code'], 'name': item['device']['alias_name']})
 
     return devices
 
