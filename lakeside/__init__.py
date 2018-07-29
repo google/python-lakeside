@@ -41,7 +41,13 @@ def get_devices(username, password):
 
     for item in info['items']:
         if item['device'] is not None:
-            devices.append({'address': item['device']['wifi']['lan_ip_addr'], 'code': item['device']['local_code'], 'type': item['device']['product']['product_code'], 'name': item['device']['alias_name']})
+            devices.append({
+                'address': item['device']['wifi']['lan_ip_addr'],
+                'code': item['device']['local_code'],
+                'type': item['device']['product']['product_code'],
+                'name': item['device']['alias_name'],
+                'id': item['device']['id'],
+            })
 
     return devices
 
