@@ -71,10 +71,20 @@ class device:
 
         encrypted_packet = cipher.encrypt(raw_packet)
 
-        self.s.send(encrypted_packet)
+        try:
+            self.s.send(encrypted_packet)
+        except:
+            self.connect()
+            self.s.send(encrypted_packet)
+            print("depois do reconnect")
+            
         if response:
             data = self.s.recv(1024)
-
+            if (len(data) == 0):
+                self.connect()
+                self.s.send(encrypted_packet)
+                data = self.s.recv(1024)
+                
             cipher = AES.new(bytes(key), AES.MODE_CBC, bytes(iv))
             decrypted_packet = cipher.decrypt(data)
 
