@@ -6,16 +6,16 @@ A simple Python API for controlling LED bulbs from [Eufy](https://www.eufylife.c
 Example use
 -----------
 
-This will connect to a bulb and turn it on at 50% brightness and the hottest colour temperature.
+This will connect to a bulb and turn it on at 50% brightness and the coldest colour temperature.
 ```
 import lakeside
 
-bulb = lakeside.bulb(ip_address, access_code)
+bulb = lakeside.bulb(ip_address, access_code, type)
 bulb.connect()
 bulb.set_state(power=True, brightness=50, temperature=100)
 ```
 
-The ip and access code can be obtained by doing:
+The ip, access code and type can be obtained by doing:
 
 ```
 import lakeside
