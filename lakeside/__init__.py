@@ -76,7 +76,6 @@ class device:
         except:
             self.connect()
             self.s.send(encrypted_packet)
-            print("depois do reconnect")
             
         if response:
             data = self.s.recv(1024)
