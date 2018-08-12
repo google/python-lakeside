@@ -19,6 +19,7 @@ import random
 import requests
 import socket
 import struct
+import threading
 import time
 
 from . import lakeside_pb2
@@ -57,11 +58,16 @@ class device:
         self.address = address
         self.code = code
         self.kind = kind
+        self.keepalive = None
 
     def connect(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.connect((self.address, 55556))
         self.update()
+        if self.keepalive is None:
+            self.keepalive = threading.Thread(target=self.ping, args=())
+            self.keepalive.daemon = True
+            self.keepalive.start()
 
     def send_packet(self, packet, response):
         cipher = AES.new(bytes(key), AES.MODE_CBC, bytes(iv))
@@ -108,6 +114,11 @@ class device:
         packet.ping.type = 0        
         response = self.send_packet(packet, True)
         return response.sequence + 1
+
+    def ping(self):
+        while True:
+            time.sleep(10)
+            self.get_sequence()
 
 class bulb(device):
     def __init__(self, address, code, kind):
