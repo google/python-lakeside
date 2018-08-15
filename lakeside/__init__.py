@@ -18,9 +18,11 @@ from Crypto.Cipher import AES
 import random
 import requests
 import socket
-import lakeside.lakeside_proto
-import time
 import struct
+import threading
+import time
+
+from . import lakeside_pb2
 
 key = bytearray([0x24, 0x4E, 0x6D, 0x8A, 0x56, 0xAC, 0x87, 0x91, 0x24, 0x43, 0x2D, 0x8B, 0x6C, 0xBC, 0xA2, 0xC4])
 iv = bytearray([0x77, 0x24, 0x56, 0xF2, 0xA7, 0x66, 0x4C, 0xF3, 0x39, 0x2C, 0x35, 0x97, 0xE9, 0x3E, 0x57, 0x47])
@@ -56,11 +58,16 @@ class device:
         self.address = address
         self.code = code
         self.kind = kind
+        self.keepalive = None
 
     def connect(self):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.connect((self.address, 55556))
         self.update()
+        if self.keepalive is None:
+            self.keepalive = threading.Thread(target=self.ping, args=())
+            self.keepalive.daemon = True
+            self.keepalive.start()
 
     def send_packet(self, packet, response):
         cipher = AES.new(bytes(key), AES.MODE_CBC, bytes(iv))
@@ -91,22 +98,27 @@ class device:
             if self.kind == "T1011" or self.kind == "T1012":
                 packet.ParseFromString(decrypted_packet[2:length+2])
             elif self.kind == "T1013":
-                packet = lakeside_proto.T1013Packet()
+                packet = lakeside_pb2.T1013Packet()
                 packet.ParseFromString(decrypted_packet[2:length+2])
             elif self.kind == "T1201" or self.kind == "T1202" or self.kind == "T1211":
-                packet = lakeside_proto.T1201Packet()
+                packet = lakeside_pb2.T1201Packet()
                 packet.ParseFromString(decrypted_packet[2:length+2])
             return packet
 
         return None
 
     def get_sequence(self):
-        packet = lakeside_proto.T1012Packet()
+        packet = lakeside_pb2.T1012Packet()
         packet.sequence = random.randrange(3000000)
         packet.code = self.code
         packet.ping.type = 0        
         response = self.send_packet(packet, True)
         return response.sequence + 1
+
+    def ping(self):
+        while True:
+            time.sleep(10)
+            self.get_sequence()
 
 class bulb(device):
     def __init__(self, address, code, kind):
@@ -122,7 +134,7 @@ class bulb(device):
         return device.get_sequence(self)
 
     def get_status(self):
-        packet = lakeside_proto.T1012Packet()
+        packet = lakeside_pb2.T1012Packet()
         packet.sequence = self.get_sequence()
         packet.code = self.code
         packet.bulbinfo.type = 1
@@ -132,7 +144,7 @@ class bulb(device):
     def set_state(self, power=None, brightness=None, temperature=None,
                   colors=None):
         if self.kind == "T1011" or self.kind == "T1012":
-            packet = lakeside_proto.T1012Packet()
+            packet = lakeside_pb2.T1012Packet()
             packet.bulbinfo.type = 0
             packet.bulbinfo.packet.unknown1 = 100
             packet.bulbinfo.packet.bulbset.command = 7
@@ -147,7 +159,7 @@ class bulb(device):
                 packet.bulbinfo.packet.bulbset.values.temperature=temperature
         else:
             self.colors = colors
-            packet = lakeside_proto.T1013Packet()
+            packet = lakeside_pb2.T1013Packet()
             packet.bulbinfo.type = 0
             packet.bulbinfo.packet.unknown1 = 10
             packet.bulbinfo.packet.control.command = 7
@@ -223,7 +235,7 @@ class switch(device):
         return device.get_sequence(self)
 
     def get_status(self):
-        packet = lakeside_proto.T1201Packet()
+        packet = lakeside_pb2.T1201Packet()
         packet.sequence = self.get_sequence()
         packet.code = self.code
         packet.switchinfo.type = 1
@@ -235,7 +247,7 @@ class switch(device):
         self.power = response.switchinfo.packet.switchstatus.power
 
     def set_state(self, power):
-        packet = lakeside_proto.T1201Packet()
+        packet = lakeside_pb2.T1201Packet()
         packet.switchinfo.type = 0
         packet.switchinfo.packet.unknown1 = 100
         packet.switchinfo.packet.switchset.command = 7
