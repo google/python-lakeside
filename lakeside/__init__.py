@@ -100,7 +100,7 @@ class device:
             elif self.kind == "T1013":
                 packet = lakeside_pb2.T1013Packet()
                 packet.ParseFromString(decrypted_packet[2:length+2])
-            elif self.kind == "T1201" or self.kind == "T1202" or self.kind == "T1211":
+            elif self.kind == "T1201" or self.kind == "T1202" or self.kind == "T1203" or self.kind == "T1211":
                 packet = lakeside_pb2.T1201Packet()
                 packet.ParseFromString(decrypted_packet[2:length+2])
             return packet
