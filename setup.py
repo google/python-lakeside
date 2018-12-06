@@ -43,7 +43,7 @@ setup(
     ],
     install_requires=[
         "protobuf",
-        "pycrypto",
+        "pycryptodome",
         "requests",
     ]
 )
