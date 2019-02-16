@@ -25,7 +25,7 @@ dynamic_requires = []
 
 setup(
     name='lakeside',
-    version="0.11",
+    version="0.12",
     author='Matthew Garrett',
     author_email='mjg59@google.com',
     url='http://github.com/google/python-lakeside',

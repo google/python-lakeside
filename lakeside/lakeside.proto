@@ -32,7 +32,7 @@ message BulbInfo {
 }
 
 message T1012Packet {
-  required int32 sequence = 1;
+  required uint32 sequence = 1;
   required string code = 2;
   optional Ping ping = 3;
   optional BulbInfo bulbinfo = 5;
@@ -76,7 +76,7 @@ message T1013BulbInfo {
 }
 
 message T1013Packet {
-  required int32 sequence = 1;
+  required uint32 sequence = 1;
   required string code = 2;
   optional Ping ping = 3;
   optional T1013BulbInfo bulbinfo = 5;
@@ -107,7 +107,7 @@ message SwitchInfo {
 }
 
 message T1201Packet {
-  required int32 sequence = 1;
+  required uint32 sequence = 1;
   required string code = 2;
   optional Ping ping = 3;
   optional SwitchInfo switchinfo = 5;
