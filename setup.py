@@ -41,7 +41,7 @@ setup(
     ],
     install_requires=[
         "protobuf",
-        "pycryptodome",
+        "pythonaes",
         "requests",
     ]
 )

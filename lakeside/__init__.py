@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from Crypto.Cipher import AES
+from aespython import AESCipher, CBCMode, KeyExpander
 import random
 import requests
 import socket
@@ -24,7 +24,9 @@ import time
 
 from . import lakeside_pb2
 
-key = bytearray([0x24, 0x4E, 0x6D, 0x8A, 0x56, 0xAC, 0x87, 0x91, 0x24, 0x43, 0x2D, 0x8B, 0x6C, 0xBC, 0xA2, 0xC4])
+key = KeyExpander(128).expand(
+    bytearray([0x24, 0x4E, 0x6D, 0x8A, 0x56, 0xAC, 0x87, 0x91, 0x24, 0x43, 0x2D, 0x8B, 0x6C, 0xBC, 0xA2, 0xC4])
+)
 iv = bytearray([0x77, 0x24, 0x56, 0xF2, 0xA7, 0x66, 0x4C, 0xF3, 0x39, 0x2C, 0x35, 0x97, 0xE9, 0x3E, 0x57, 0x47])
 
 def get_devices(username, password):
@@ -70,29 +72,38 @@ class device:
             self.keepalive.start()
 
     def send_packet(self, packet, response):
-        cipher = AES.new(bytes(key), AES.MODE_CBC, bytes(iv))
+        cipher = CBCMode(AESCipher(key), 16)
+        cipher.set_iv(iv)
         raw_packet = packet.SerializeToString()
 
         for i in range(16 - (len(raw_packet) % 16)):
             raw_packet += b'\0'
 
-        encrypted_packet = cipher.encrypt(raw_packet)
+        encrypted_packet = bytearray([])
+        while len(raw_packet) > 0:
+            encrypted_packet += bytearray(cipher.encrypt_block(bytearray(raw_packet[:16])))
+            raw_packet = raw_packet[16:]
 
         try:
             self.s.send(encrypted_packet)
-        except:
+        except OSError:
             self.connect()
             self.s.send(encrypted_packet)
-            
+
         if response:
             data = self.s.recv(1024)
-            if (len(data) == 0):
+            if len(data) == 0:
                 self.connect()
                 self.s.send(encrypted_packet)
                 data = self.s.recv(1024)
-                
-            cipher = AES.new(bytes(key), AES.MODE_CBC, bytes(iv))
-            decrypted_packet = cipher.decrypt(data)
+
+            cipher = CBCMode(AESCipher(key), 16)
+            cipher.set_iv(iv)
+
+            decrypted_packet = bytearray([])
+            while len(data) > 0:
+                decrypted_packet += bytearray(cipher.decrypt_block(bytearray(data[:16])))
+                data = data[16:]
 
             length = struct.unpack("<H", decrypted_packet[0:2])[0]
             if self.kind == "T1011" or self.kind == "T1012":
@@ -111,7 +122,7 @@ class device:
         packet = lakeside_pb2.T1012Packet()
         packet.sequence = random.randrange(3000000)
         packet.code = self.code
-        packet.ping.type = 0        
+        packet.ping.type = 0
         response = self.send_packet(packet, True)
         return response.sequence + 1
 
