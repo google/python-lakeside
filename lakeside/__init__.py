@@ -35,14 +35,13 @@ def get_devices(username, password):
 
     payload = {'client_id':client_id, 'client_Secret':client_secret, 'email':username, 'password':password}
     r = requests.post("https://home-api.eufylife.com/v1/user/email/login", json=payload)
-
     token = r.json()['access_token']
     headers = {'token': token, 'category': 'Home'}
     r = requests.get("https://home-api.eufylife.com/v1/device/list/devices-and-groups", headers=headers)
     info = r.json()
 
     for item in info['items']:
-        if item['device'] is not None:
+        if item['device'] is not None and item['device']['wifi'] is not None:
             devices.append({
                 'address': item['device']['wifi']['lan_ip_addr'],
                 'code': item['device']['local_code'],
